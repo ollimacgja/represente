@@ -2,9 +2,10 @@ require 'factory_girl'
 
 FactoryGirl.define do
   factory :orcamento do
-    numero_orcamento 1
-    user
-    fornecedor
-    cliente
+    user				
+    fornecedor	{FactoryGirl.create(:fornecedor)}
+    cliente			{FactoryGirl.create(:cliente)}
+
+
   end
 end

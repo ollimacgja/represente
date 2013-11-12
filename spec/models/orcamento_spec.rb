@@ -13,17 +13,19 @@ describe Orcamento do
 
 	describe "ao inicializar" do
 			before(:each) do
-				attribs = FactoryGirl.attributes_for(:orcamento)
+				@attribs = FactoryGirl.attributes_for(:orcamento)
 				@user = FactoryGirl.create(:user)
-				@orcamento = @user.orcamentos.create(attribs)
+				@orcamento = @user.orcamentos.create(@attribs)
 			end
+		
 		it 'deve pertencer ao usuario' do
 			@orcamento.user_id.should == @user.id
 		end
 
 
 		it 'deverá somar um ao numero do orcamento anterior' do
-			@orcamento_dois = @user.orcamentos.build
+			debugger
+			@orcamento_dois = @user.orcamentos.create(@attribs)
 			@orcamento_dois.numero_orcamento.should == (@orcamento.numero_orcamento + 1)
 		end
 
