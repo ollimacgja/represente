@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131113163824) do
+ActiveRecord::Schema.define(version: 20131113222719) do
 
   create_table "clientes", force: true do |t|
     t.string   "cnpj"
@@ -23,17 +23,11 @@ ActiveRecord::Schema.define(version: 20131113163824) do
     t.integer  "numero"
     t.string   "complemento"
     t.string   "bairro"
-    t.integer  "municipio_id"
     t.integer  "uf_id"
     t.integer  "cep"
-    t.integer  "ddd1"
-    t.integer  "telefone1"
-    t.integer  "ddd2"
-    t.integer  "telefone2"
-    t.integer  "ddd_fax"
-    t.integer  "fax"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "municipio"
   end
 
   create_table "fornecedors", force: true do |t|
@@ -46,17 +40,11 @@ ActiveRecord::Schema.define(version: 20131113163824) do
     t.integer  "numero"
     t.string   "complemento"
     t.string   "bairro"
-    t.integer  "municipio_id"
     t.integer  "uf_id"
     t.integer  "cep"
-    t.integer  "ddd1"
-    t.integer  "telefone1"
-    t.integer  "ddd2"
-    t.integer  "telefone2"
-    t.integer  "ddd_fax"
-    t.integer  "fax"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "municipio"
   end
 
   create_table "orcamentos", force: true do |t|
@@ -76,6 +64,16 @@ ActiveRecord::Schema.define(version: 20131113163824) do
     t.integer  "quantidade"
     t.decimal  "preco_por_unidade"
     t.integer  "orcamento_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "telefones", force: true do |t|
+    t.string   "tipo"
+    t.integer  "ddd"
+    t.integer  "telefone"
+    t.integer  "telefonavel_id"
+    t.string   "telefonavel_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

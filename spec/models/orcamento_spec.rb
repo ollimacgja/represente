@@ -14,7 +14,7 @@ describe Orcamento do
 	it { should have_many(:produtos)}
 	it { should accept_nested_attributes_for(:produtos) }
 
-	describe "ao inicializar" do
+	describe do
 			before(:each) do
 				@attribs = FactoryGirl.attributes_for(:orcamento)
 				@user = FactoryGirl.create(:user)
@@ -27,17 +27,29 @@ describe Orcamento do
 
 
 		it 'deverá somar um ao numero do orcamento anterior' do
-			@orcamento_dois = @user.orcamentos.create(@attribs)
-			@orcamento_dois.numero_orcamento.should == (@orcamento.numero_orcamento + 1)
+			orcamento = @user.orcamentos.create(@attribs)
+			orcamento.numero_orcamento.should == (@orcamento.numero_orcamento + 1)
 		end
 
 		it 'não deverá somar ao numero de orçamento caso este esteja presente' do
-			orcamento_tres = @user.orcamentos.build(@attribs)
-			orcamento_tres.numero_orcamento = 444
-			orcamento_tres.save
-			orcamento_tres.numero_orcamento.should == 444
+			orcamento = @user.orcamentos.build(@attribs)
+			orcamento.numero_orcamento = 444
+			orcamento.save
+			orcamento.numero_orcamento.should == 444
 		end
 
+		it 'deve calcular o valor total do orcamento' do
+			orcamento = @user.orcamentos.create(@attribs)
+			attribs_prod1 = FactoryGirl.attributes_for(:produto)
+			attribs_prod2 = FactoryGirl.attributes_for(:produto)
+			attribs_prod3 = FactoryGirl.attributes_for(:produto)
+			produto1 = orcamento.produtos.create(attribs_prod1)
+			produto2 = orcamento.produtos.create(attribs_prod2)
+			produto3 = orcamento.produtos.create(attribs_prod3)
+			valor_total = (produto1.quantidade * produto1.preco_por_unidade)+(produto2.quantidade * produto2.preco_por_unidade)+(produto3.quantidade * produto3.preco_por_unidade)
+			orcamento.calcula_total
+			orcamento.total_orcamento.should == valor_total
+		end
 
 	end
 end

@@ -28,5 +28,12 @@ class Orcamento < ActiveRecord::Base
 		end
 	end
 
-
+	def calcula_total
+		total = 0
+		produtos.each do |produto|
+			total += (produto.quantidade * produto.preco_por_unidade)
+		end
+		self.total_orcamento = total
+		save
+	end
 end
