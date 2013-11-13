@@ -11,6 +11,9 @@ describe Orcamento do
 
 	it { should validate_uniqueness_of(:numero_orcamento).scoped_to(:user_id) }
 
+	it { should have_many(:produtos)}
+	it { should accept_nested_attributes_for(:produtos) }
+
 	describe "ao inicializar" do
 			before(:each) do
 				@attribs = FactoryGirl.attributes_for(:orcamento)
@@ -24,9 +27,15 @@ describe Orcamento do
 
 
 		it 'deverá somar um ao numero do orcamento anterior' do
-			debugger
 			@orcamento_dois = @user.orcamentos.create(@attribs)
 			@orcamento_dois.numero_orcamento.should == (@orcamento.numero_orcamento + 1)
+		end
+
+		it 'não deverá somar ao numero de orçamento caso este esteja presente' do
+			orcamento_tres = @user.orcamentos.build(@attribs)
+			orcamento_tres.numero_orcamento = 444
+			orcamento_tres.save
+			orcamento_tres.numero_orcamento.should == 444
 		end
 
 

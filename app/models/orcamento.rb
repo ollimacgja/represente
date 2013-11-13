@@ -9,15 +9,21 @@ class Orcamento < ActiveRecord::Base
 
 	validates_uniqueness_of :numero_orcamento, scope: :user
 
+	has_many :produtos
+	accepts_nested_attributes_for :produtos
+
 	before_save	:gera_numero_orcamento
 
 	def gera_numero_orcamento
-		if user.present?
-			ultimo_numero = user.orcamentos.maximum(:numero_orcamento)
-			if ultimo_numero.present?
-				self.numero_orcamento = ultimo_numero+1
-			else
-				self.numero_orcamento = 1
+		unless numero_orcamento.present?
+
+			if user.present?
+				ultimo_numero = user.orcamentos.maximum(:numero_orcamento)
+				if ultimo_numero.present?
+					self.numero_orcamento = ultimo_numero+1
+				else
+					self.numero_orcamento = 1
+				end
 			end
 		end
 	end
