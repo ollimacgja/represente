@@ -1,0 +1,26 @@
+<h1>Orçamento</h1>
+
+<% if @orcamentos.any? %>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th> Orçamento Nº</th>
+				<th> Fornecedor</th>
+				<th> Cliente</th>
+				<th> Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @orcamentos.each do |orcamento| %>
+				<tr>
+					<%= render orcamento %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<hr>
+		<%= paginate @orcamentos %>
+<% else %>
+	Não existem orçamentos
+<% end %>
+<%= link_to "Novo Orçamento", new_orcamento_path, :class => 'btn btn-success' %>

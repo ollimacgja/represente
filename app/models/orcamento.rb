@@ -1,6 +1,5 @@
 class Orcamento < ActiveRecord::Base
 
-
 	belongs_to :user
 	belongs_to :fornecedor
 	belongs_to :cliente
@@ -33,7 +32,9 @@ class Orcamento < ActiveRecord::Base
 		produtos.each do |produto|
 			total += (produto.quantidade * produto.preco_por_unidade)
 		end
-		self.total_orcamento = total
+		self.total_orcamento = total.round(4)
 		save
+
+		total.round(4)
 	end
 end

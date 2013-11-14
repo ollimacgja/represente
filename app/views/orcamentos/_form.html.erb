@@ -1,0 +1,35 @@
+<%= simple_nested_form_for @orcamento, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+
+    <%= f.input :fornecedor_id %>
+    <%= f.input :cliente_id %>
+
+    <!-- Telefones -->
+
+		<%= f.label :produtos %>
+		<div id="produto">
+			<div class="items">
+				<%= f.simple_fields_for :produtos do |f| %>
+					<div>
+					<pre class="produto_form">
+						<%= f.input :referencia %>
+						<%= f.input :descricao %>
+						<%= f.input :unidade %>
+						<%= f.input :quantidade %>
+						<%= f.input :preco_por_unidade %>
+						<%= f.link_to_remove image_tag("delete.png") %>
+					</pre>
+					</div>
+				<% end %>
+			</div>
+			<div class="group-right">
+				<p><%= f.link_to_add '+ Adicionar produto', :produtos, class: 'btn btn-info' %></p>
+			</div>
+		</div>
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', orcamentos_path, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>

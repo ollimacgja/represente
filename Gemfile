@@ -46,6 +46,9 @@ end
 gem 'devise'
 gem "less-rails"
 gem "therubyracer"
+gem 'kaminari'
+gem 'simple_form'
+gem 'nested_form'
 
 
 group :development, :test do
