@@ -1,0 +1,55 @@
+<%= simple_nested_form_for @cliente, :html => { :class => 'form-horizontal' } do |f| %>
+  <fieldset>
+
+<% if @cliente.errors.present? %>
+  <div class="alert alert-error" role="alert">
+    <h3 class="titulo-erro">Não foi possivel efetuar o cadastro, corrija os seguintes erros:</h3>
+    <br>
+      <ul>
+      <% @cliente.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+      <% end %>
+      </ul>
+  </div>
+<% end %>
+
+		<%= f.input:cnpj %>
+		<%= f.input:inscricao_estadual %>
+		<%= f.input:inscricao_municipal %>
+		<%= f.input:nome_fantasia %>
+		<%= f.input:razao_social %>
+		<%= f.input:endereco %>
+		<%= f.input:numero %>
+		<%= f.input:complemento %>
+		<%= f.input:bairro %>
+		<%= f.input:municipio %>
+		<%= f.input:uf_id %>
+		<%= f.input:cep %>
+
+	<!-- Telefones -->
+
+		<%= f.label :telefones %>
+		<div id="telefones">
+			<div class="items">
+				<%= f.simple_fields_for :telefones do |f| %>
+					<div>
+						<%= f.select :tipo, options_for_select({'Residencial' => 'R', 'Comercial' => 'C', 'Celular' => 'T', 'Principal' => 'P', 'Fax Comercial' => 'F', 'Fax Residencial' => 'A', 'Outro' => 'O'}, f.object.try(:tipo)) %>
+						<%= f.text_field :ddd %>
+						<%= f.text_field :telefone %>
+						<%= f.link_to_remove image_tag("delete.png") %>
+					</div>
+				<% end %>
+			</div>
+			<div class="group-right">
+				<p><%= f.link_to_add '+ Adicionar telefone', :telefones, class: 'btn btn-info' %></p>
+			</div>
+		</div>
+
+		<!-- Fim telefones -->
+
+    <div class="form-actions">
+      <%= f.submit nil, :class => 'btn btn-primary' %>
+      <%= link_to 'Cancel', clientes_path, :class => 'btn' %>
+    </div>
+  </fieldset>
+<% end %>

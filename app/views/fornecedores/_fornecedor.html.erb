@@ -1,0 +1,6 @@
+<td><%= fornecedor.cnpj%></td>
+<td><%= fornecedor.nome_fantasia%></td>
+<td><%= fornecedor.municipio%></td>
+<td><%= fornecedor.uf.sigla%></td>
+<td><%= link_to "Editar", edit_fornecedore_path(:id => fornecedor.id) %> | <%= link_to "Excluir", fornecedore_path(:id => fornecedor.id),
+            :confirm => 'Tem certeza que deseja excluir?', :method => :delete %></td>

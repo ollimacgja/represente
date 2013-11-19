@@ -1,0 +1,27 @@
+<h1>Clientes</h1>
+
+<% if @clientes.any? %>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th> CNPJ</th>
+				<th> Nome Fantasia</th>
+				<th> Municipio</th>
+				<th> UF</th>
+				<th> Ações</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @clientes.each do |cliente| %>
+				<tr>
+					<%= render cliente %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<hr>
+		<%= paginate @clientes %>
+<% else %>
+	<p>Não existem clientes</p>
+<% end %>
+<%= link_to "Novo Cliente", new_cliente_path, :class => 'btn btn-success' %>

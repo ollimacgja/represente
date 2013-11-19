@@ -1,0 +1,6 @@
+<td><%= cliente.cnpj%></td>
+<td><%= cliente.nome_fantasia%></td>
+<td><%= cliente.municipio%></td>
+<td><%= cliente.uf.sigla%></td>
+<td><%= link_to "Editar", edit_cliente_path(:id => cliente.id) %> | <%= link_to "Excluir", cliente_path(:id => cliente.id),
+            :confirm => 'Tem certeza que deseja excluir?', :method => :delete %></td>

@@ -6,4 +6,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :orcamentos
+  has_many :fornecedors
+  has_many :clientes
 end

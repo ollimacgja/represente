@@ -17,3 +17,6 @@
 //= require jquery_nested_form
 //= require_tree .
 
+$(document).ready(function($) {
+  $("input[type=text].currency").mask("99.999.999/9999-99");
+});

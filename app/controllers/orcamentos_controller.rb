@@ -9,9 +9,7 @@ class OrcamentosController < ApplicationController
 	end
 
 	def create
-		@orcamento = current_user.orcamentos.create(orcamento_params)
-			debugger
-
+		@orcamento = current_user.orcamentos.build(orcamento_params)
 		if @orcamento.save
 			flash[:notice] = "Orcamento criado com sucesso"
 			redirect_to orcamentos_path
@@ -20,7 +18,32 @@ class OrcamentosController < ApplicationController
 		end
 	end
 
-	def orcamento_params
-    params.require(:orcamento).permit(:fornecedor_id, :cliente_id, produtos_attributes: [:referencia, :descricao, :unidade, :quantidade, :preco_por_unidade])
+  def edit
+  	@orcamento = current_user.orcamentos.find(params[:id])
   end
+
+  def update
+		@orcamento = current_user.orcamentos.find(params[:id])
+		if @orcamento.update_attributes(orcamento_params)
+			redirect_to orcamentos_path, :notice => "Orçamento alterado com sucesso."
+		else
+			render :action => 'edit'
+		end
+	end
+
+	def destroy
+		@orcamento = current_user.orcamentos.find(params[:id])
+
+		if @orcamento.present?
+			@orcamento.destroy
+			redirect_to orcamentos_path, :notice => "Orcamento excluido com sucesso."
+		end
+		
+	end
+	
+private
+	def orcamento_params
+    params.require(:orcamento).permit(:fornecedor_id, :cliente_id, produtos_attributes: [:referencia, :descricao, :unidade, :quantidade, :preco_por_unidade, :_destroy, :id])
+  end
+
 end

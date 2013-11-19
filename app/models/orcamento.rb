@@ -8,8 +8,8 @@ class Orcamento < ActiveRecord::Base
 
 	validates_uniqueness_of :numero_orcamento, scope: :user
 
-	has_many :produtos
-	accepts_nested_attributes_for :produtos
+	has_many :produtos, :dependent => :destroy
+	accepts_nested_attributes_for :produtos, :allow_destroy => true
 
 	before_save	:gera_numero_orcamento
 

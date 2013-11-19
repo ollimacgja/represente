@@ -1,0 +1,26 @@
+<h1>Fornecedores</h1>
+
+<% if @fornecedores.any? %>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th> Orçamento Nº</th>
+				<th> Fornecedor</th>
+				<th> Cliente</th>
+				<th> Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @fornecedores.each do |fornecedor| %>
+				<tr>
+					<%= render :partial => "fornecedor", :locals => { :fornecedor => fornecedor } %>
+				</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<hr>
+		<%= paginate @fornecedores %>
+<% else %>
+	<p>Não existem Fornecedores</p>
+<% end %>
+<%= link_to "Novo Fornecedor", new_fornecedore_path, :class => 'btn btn-success' %>

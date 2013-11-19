@@ -4,7 +4,7 @@ describe Produto do
 
 	it { should belong_to(:orcamento) }
 
-	it { should validate_presence_of(:orcamento) }
+	
 	it { should validate_presence_of(:referencia) }
 	it { should validate_presence_of(:descricao) }
 	it { should validate_presence_of(:unidade) }
