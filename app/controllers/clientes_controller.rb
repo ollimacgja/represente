@@ -40,6 +40,12 @@ class ClientesController < ApplicationController
 		end
 		
 	end
+
+	def search
+		busca = Fornecedor.busca(params[:term])
+		render :json => busca.map {|fornecedor| {:label => fornecedor.razao_social, :value => fornecedor.razao_social, :id => fornecedor.id }}
+	end
+
 	
 private
 	def cliente_params

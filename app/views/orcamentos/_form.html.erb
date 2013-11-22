@@ -13,8 +13,10 @@
   </div>
 <% end %>
 
-    <%= f.input :fornecedor_id %>
-    <%= f.input :cliente_id %>
+    <%= f.input :fornecedor_dados %>
+    <%= f.hidden_field :fornecedor_id, :id => "fornecedor_id" %>
+    <%= f.input :cliente_dados %>
+    <%= f.hidden_field :cliente_id, :id => "cliente_id" %>
 
     <!-- Produtos -->
 

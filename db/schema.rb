@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131119142610) do
+ActiveRecord::Schema.define(version: 20131122220116) do
 
   create_table "clientes", force: true do |t|
     t.string   "cnpj"

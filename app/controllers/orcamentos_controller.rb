@@ -8,6 +8,10 @@ class OrcamentosController < ApplicationController
 		@orcamento = current_user.orcamentos.build
 	end
 
+	def show
+		@orcamento = current_user.orcamentos.find(params[:id])
+	end
+
 	def create
 		@orcamento = current_user.orcamentos.build(orcamento_params)
 		if @orcamento.save

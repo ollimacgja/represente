@@ -1,0 +1,100 @@
+<div class="row-fluid">
+  <div class="span8">
+  	Dados do Representante:<br>
+  	E-mail: <%= current_user.email %>
+  </div>
+  <div class="span4">
+  	<h3>Orçamento Nº: <%= @orcamento.numero_orcamento %></h3>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span5">
+  	<table>
+	  	<tr>
+	  		<tr>
+	  			<td>
+	  				Fornecedor: <%= @orcamento.fornecedor.razao_social %>
+	  			</td>
+	  		</tr>
+	  		<tr>
+		  			<td>
+		  				Razão Social:<%= @orcamento.fornecedor.razao_social %>
+		  			</td>
+		  		</tr>
+		  		<tr>
+		  			<td>
+		  				Fantasia: <%= @orcamento.fornecedor.nome_fantasia %>
+		  			</td>
+		  		</tr>
+		  		<tr>
+		  			<td>
+		  				Endereço: <%= @orcamento.fornecedor.endereco_completo %>, 
+		  			</td>
+		  		</tr>
+	  	</tr>	
+  	</table>
+  </div>
+  <div class="span7">
+  	<table>
+  		<tr>
+	  		<tr>
+	  			<td>
+	  				Cliente:
+	  			</td>
+	  		</tr>
+	  		<tr>
+	  			<td>
+	  				Razão Social:<%= @orcamento.cliente.razao_social %>
+	  			</td>
+	  		</tr>
+	  		<tr>
+	  			<td>
+	  				Fantasia: <%= @orcamento.cliente.nome_fantasia %>
+	  			</td>
+	  		</tr>
+	  		<tr>
+	  			<td>
+	  				Endereço: <%= @orcamento.cliente.endereco_completo %>, 
+	  			</td>
+	  		</tr>
+  		</tr>
+  	</table>
+  </div>
+</div>
+<div class="row-fluid">
+  <div class="span12">
+  	<hr>
+  	<table class="table table-bordered">
+  		<thead>
+  			<tr>
+  				<th>Referência</th>
+  				<th>Descrição</th>
+  				<th>Unidade</th>
+  				<th>Quantidade</th>
+  				<th>Preço Unit.</th>
+  				<th>Total</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+  		<% if @orcamento.produtos.present? %>
+  			<% @orcamento.produtos.each do |produto| %>
+  			<tr>
+  				<td><%= produto.referencia %></td>
+  				<td><%= produto.descricao %></td>
+  				<td><%= produto.unidade %></td>
+  				<td><%= produto.quantidade %></td>
+  				<td><%= number_to_currency(produto.preco_por_unidade) %></td>
+  				<td><%= number_to_currency(produto.preco_por_unidade.to_f * produto.quantidade.to_f) %></td>
+  			</tr>
+  			<% end %>
+  		<% else %>
+  			<tr>
+  				<td>
+  					Não existem produtos nesse orçamento.
+  				</td>
+  			</tr>
+  		<% end %>
+  		</tbody>
+  	</table>
+  </div>
+</div>

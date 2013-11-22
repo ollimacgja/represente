@@ -4,6 +4,8 @@ class Orcamento < ActiveRecord::Base
 	belongs_to :fornecedor
 	belongs_to :cliente
 
+	attr_accessor :fornecedor_dados, :cliente_dados
+
 	validates_presence_of :user, :fornecedor, :cliente
 
 	validates_uniqueness_of :numero_orcamento, scope: :user

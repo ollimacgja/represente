@@ -23,7 +23,7 @@
 		<%= f.input:complemento %>
 		<%= f.input:bairro %>
 		<%= f.input:municipio %>
-		<%= f.input:uf_id %>
+		<%= f.association :uf, collection: Uf.all(order: 'sigla'),label_method: :sigla, value_method: :id, prompt: "Escolha um Estado" %>
 		<%= f.input:cep %>
 
 	<!-- Telefones -->

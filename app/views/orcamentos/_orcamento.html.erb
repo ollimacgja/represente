@@ -3,4 +3,4 @@
 <td><%= orcamento.cliente.razao_social%></td>
 <td><%= number_to_currency(orcamento.calcula_total)%></td>
 <td><%= link_to "Editar", edit_orcamento_path(:id => orcamento.id) %> | <%= link_to "Excluir", orcamento_path(:id => orcamento.id),
-            :confirm => 'Tem certeza que deseja excluir?', :method => :delete %></td>
+            :confirm => 'Tem certeza que deseja excluir?', :method => :delete %> | <%= link_to "Gerar PDF", orcamento_path(orcamento.id, :format => "pdf") %></td>

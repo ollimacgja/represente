@@ -49,6 +49,7 @@ gem "therubyracer"
 gem 'kaminari'
 gem 'simple_form'
 gem 'nested_form'
+gem 'pdfkit'
 
 
 group :development, :test do
